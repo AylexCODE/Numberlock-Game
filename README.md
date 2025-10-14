@@ -30,10 +30,10 @@ A fun and interactive web game where players arrange randomly generated numbers 
     ```
 2. Navigate to the project directory:
     ```sh
-    cd arrange-the-numbers
+    cd Sort-Secret-Numbers-Game
     ```
 3. Open `index.html` in your web browser:
-    ```bash
+    ```sh
     # For most systems, you can simply double-click the file
     ```
     
