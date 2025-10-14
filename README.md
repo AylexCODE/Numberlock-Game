@@ -13,7 +13,10 @@ A fun and interactive web game where players arrange randomly generated numbers 
 
 ### Game Rules
 - Each slot must contain exactly one number
-- Numbers range from 0 to 99
+- [Easy Difficulty] Numbers range from 0 to 50 and have 5 slots
+- [Default][Normal Difficulty] Numbers range from 0 to 99 and have 10 slots
+- [Hard Difficulty] Numbers range from 0 to 500 and have 20 slots
+- [Insane Difficulty] Numbers range from 0 to 999 and have 30 slots
 
 
 ## Technologies Used
