@@ -1,4 +1,4 @@
-# Sort Secret Numbers
+# Sort Randomly Generated Numbers
 A fun and interactive web game where players arrange randomly generated numbers in ascending order by dragging and dropping them into position.
 
 
@@ -26,11 +26,11 @@ A fun and interactive web game where players arrange randomly generated numbers 
 ## Installation
 1. Clone the repository:
     ```sh
-    git clone https://github.com/AylexCODE/Sort-Secret-Numbers-Game.git
+    git clone https://github.com/AylexCODE/Numberlock-Gams.git
     ```
 2. Navigate to the project directory:
     ```sh
-    cd Sort-Secret-Numbers-Game
+    cd Numberlock-Game
     ```
 3. Open `index.html` in your web browser:
     ```sh
