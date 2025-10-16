@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         bounds: document.getElementsByTagName("body")[0],
         liveSnap: {
             points: function (point) {
-                placeBtn.disabled = true;
+                buttonState(false);
+                
                 for(const p of boxes){
                     const dx = point.x - p.x;
                     const dy = point.y - p.y;
@@ -54,16 +55,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 gsap.to("#box", {
                     x: snapTo[0],
                     y: snapTo[1],
-                    delay: 0.25,
+                    delay: 0.2,
                     ease: "power2.inOut"
                 });
                 
-                setTimeout(() => {placeBtn.disabled = false}, 500);
+                setTimeout(() => {buttonState(true); playBoxSnapSound();}, 400);
             }else{
-                placeBtn.disabled = true;
+                buttonState(false);
             }
         }
     });
+    
 });
 
 let currentNumber = rng();
@@ -75,13 +77,18 @@ function rng(){
 }
 
 function lockIn(){
-    placeBtn.disabled = true;
-    
+    if(placeBtn.style.backgroundColor == "darkred"){
+        return playButtonDisabledSound();
+    }
+
+    buttonState(false);
+    playLockInSound();
     boxes = boxes.filter((n) => {
         if(n.x == snapTo[0] && n.y == snapTo[1]){
             const boxIndex = dataBoxes.findIndex((box) => (box.x == n.x && box.y == n.y));
             numbers[boxIndex] = currentNumber;
-            guessBoxes[boxIndex].innerHTML = `<h3>${currentNumber}</h3>`;
+            guessBoxes[boxIndex].innerHTML = `<h2>${currentNumber}</h2>`;
+            guessBoxes[boxIndex].style.backgroundColor = "#CCCCCC";
         }else{
             return n;
         }
@@ -96,7 +103,8 @@ function lockIn(){
     }
 }
 
-function calc(){
+async function calc(){
+    playScoreResultSound();
     for(let i = 0; i < 10; i++){
         let valid = 0;
         for(let j = 0; j < 10; j++){
@@ -109,5 +117,22 @@ function calc(){
         }else{
             guessBoxes[i].style.backgroundColor = "#FF0000";
         }
+        await new Promise(r => setTimeout(r, 100));
     }
 }
+
+function buttonState(state){
+    if(state){
+        placeBtn.style.backgroundColor = "darkgreen";
+        placeBtn.style.color = "white";
+        placeBtn.style.borderColor = "green";
+    }else{
+        placeBtn.style.backgroundColor = "darkred";
+        placeBtn.style.color = "red";
+        placeBtn.style.borderColor = "red";
+    }
+}
+
+window.addEventListener("resize", function(){
+    location.reload();
+});
