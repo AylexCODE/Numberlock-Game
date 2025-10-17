@@ -1,7 +1,7 @@
-const lockIn_sound = new Audio("lock_in.wav");
-const boxSnap_sound = new Audio("box_snap.wav");
-const scoreResult_sound = new Audio("score_result.wav");
-const btnDisabled_sound = new Audio("button_disabled.mp3");
+const lockIn_sound = new Audio("../assets/sounds/lock_in.ogg");
+const boxSnap_sound = new Audio("../assets/sounds/box_snap.ogg");
+const scoreResult_sound = new Audio("../assets/sounds/score_result.ogg");
+const btnDisabled_sound = new Audio("../assets/sounds/button_disabled.ogg");
 
 function playButtonDisabledSound(){
     btnDisabled_sound.pause();
