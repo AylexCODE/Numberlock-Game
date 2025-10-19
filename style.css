@@ -20,10 +20,11 @@ body > div {
 }
 
 #container {
-    width: 80%;
+    width: calc(100%-50px);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     padding: 1rem;
 }
@@ -56,11 +57,17 @@ body > div {
     z-index: 1;
 }
 
-#placeBtn {
+.placeBtn {
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-weight: bold;
     border-color: red;
     background-color: darkred;
     color: red;
+}
+
+.placeBtn.clickable {
+    border-color: green;
+    background-color: darkgreen;
+    color: white;
 }

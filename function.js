@@ -1,7 +1,13 @@
 const container = document.getElementById("container");
 const guessBoxes = document.getElementsByClassName("guessBox");
 const box = document.getElementById("box");
-const placeBtn = document.getElementById("placeBtn");
+const placeBtn = document.querySelector(".placeBtn");
+
+let snapTo = [0, 0];
+let resetGuessBox;
+
+let currentNumber = rng();
+const numbers = [];
 
 for(let i = 0; i < 10; i++){
     const guessBox = document.createElement("span");
@@ -17,59 +23,6 @@ Array.from(guessBoxes).forEach((box, i) => {
     dataBoxes[i] = { x: box.getBoundingClientRect().x, y: box.getBoundingClientRect().y};
 });
     
-let snapTo = [0, 0];
-let resetGuessBox;
-document.addEventListener("DOMContentLoaded", (event) => {
-    gsap.registerPlugin(Draggable);
-    
-    resetGuessBox = function resetGuessBoxPosition(){
-        gsap.set(box, {
-            x: window.innerWidth / 2 - 25,
-            y: window.innerHeight / 2 - 25
-        });
-    }
-    resetGuessBox();
-    
-    Draggable.create(box, {
-        type: "x,y",
-        inertia: true,
-        bounds: document.getElementsByTagName("body")[0],
-        liveSnap: {
-            points: function (point) {
-                buttonState(false);
-                
-                for(const p of boxes){
-                    const dx = point.x - p.x;
-                    const dy = point.y - p.y;
-                    if (Math.sqrt(dx * dx + dy * dy) < 30) {
-                        snapTo = [p.x, p.y];
-                        return point;
-                    }
-                }
-                snapTo = null;
-                return point;
-            }
-        },
-        onDragEnd: function(){
-            if(snapTo){
-                gsap.to("#box", {
-                    x: snapTo[0],
-                    y: snapTo[1],
-                    delay: 0.2,
-                    ease: "power2.inOut"
-                });
-                
-                setTimeout(() => {buttonState(true); playBoxSnapSound();}, 400);
-            }else{
-                buttonState(false);
-            }
-        }
-    });
-    
-});
-
-let currentNumber = rng();
-const numbers = [];
 box.innerHTML = `<h2>${currentNumber}</h2>`;
 
 function rng(){
@@ -77,7 +30,7 @@ function rng(){
 }
 
 function lockIn(){
-    if(placeBtn.style.backgroundColor == "darkred"){
+    if(!placeBtn.classList.contains("clickable")){
         return playButtonDisabledSound();
     }
 
@@ -123,13 +76,9 @@ async function calc(){
 
 function buttonState(state){
     if(state){
-        placeBtn.style.backgroundColor = "darkgreen";
-        placeBtn.style.color = "white";
-        placeBtn.style.borderColor = "green";
+        placeBtn.classList.add("clickable");
     }else{
-        placeBtn.style.backgroundColor = "darkred";
-        placeBtn.style.color = "red";
-        placeBtn.style.borderColor = "red";
+        placeBtn.classList.remove("clickable");
     }
 }
 
