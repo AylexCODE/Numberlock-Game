@@ -57,13 +57,23 @@ body > div {
     z-index: 1;
 }
 
-.placeBtn {
+.placeBtn, .resetBtn {
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-weight: bold;
+}
+
+.placeBtn {
     border-color: red;
     background-color: darkred;
     color: red;
+}
+
+.resetBtn {
+    display: none;
+    border-color: black;
+    background-color: #CCCCCC;
+    color: black;
 }
 
 .placeBtn.clickable {
