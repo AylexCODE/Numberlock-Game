@@ -12,7 +12,7 @@ const numbers = [];
 
 let boxes = [];
 const dataBoxes = [];
-
+    
 function start(){
     for(let i = 0; i < 10; i++){
         const guessBox = document.createElement("span");
@@ -73,7 +73,7 @@ function reset(){
     
     numbers.length = 0;
     container.replaceChildren();
-    start();
+    start(); BGMMusic();
 }
 
 async function calc(){
