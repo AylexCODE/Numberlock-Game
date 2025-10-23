@@ -1,6 +1,7 @@
 const bgmList = ["bgm_loop1", "bgm_loop2", "bgm_sorcerer_loop", "blues_guitar_loop", "jazzy_spy_loop", "soft_piano_loop", "tutorial_loop"];
 
 let bgm = new Audio(`../assets/bgm/${bgmList[Math.floor(Math.random() * 7)]}.ogg`);
+const start_sound = new Audio("../assets/sounds/start.ogg");
 const lockIn_sound = new Audio("../assets/sounds/lock_in.ogg");
 const boxSnap_sound = new Audio("../assets/sounds/box_snap.ogg");
 const scoreResult_sound = new Audio("../assets/sounds/score_result.ogg");
@@ -12,6 +13,12 @@ function BGMMusic(){
     bgm = new Audio(`../assets/bgm/${bgmList[Math.floor(Math.random() * 7)]}.ogg`);
     bgm.loop = true;
     bgm.play();
+}
+
+function playStartSound(){
+    start_sound.pause();
+    start_sound.currentTime = 0;
+    start_sound.play();
 }
 
 function playButtonDisabledSound(){
