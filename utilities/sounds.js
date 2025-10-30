@@ -12,7 +12,8 @@ function BGMMusic(){
     bgm.currentTime = 0;
     bgm = new Audio(`../assets/bgm/${bgmList[Math.floor(Math.random() * 7)]}.ogg`);
     bgm.loop = true;
-    bgm.play();
+    
+    setTimeout(() => bgm.play(), 1000);
 }
 
 function playStartSound(){
