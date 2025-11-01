@@ -4,6 +4,7 @@ const box = document.getElementById("box");
 const placeBtn = document.querySelector(".placeBtn");
 const resetBtn = document.querySelector(".resetBtn");
 
+let boxCount = 10, rngLimit = 100;
 let snapTo = [0, 0];
 let resetGuessBox;
 
@@ -15,7 +16,9 @@ const dataBoxes = [];
     
 function start(){
     playStartSound();
-    for(let i = 0; i < 10; i++){
+    document.getElementById("boxContainer").style.visibility = "visible";
+    
+    for(let i = 0; i < boxCount; i++){
         const guessBox = document.createElement("span");
         guessBox.id = `guessBox${i}`;
         guessBox.classList = "guessBox";
@@ -30,11 +33,15 @@ function start(){
     box.innerHTML = `<h2>${currentNumber}</h2>`;
 }
 
+function setDifficulty(x, y){
+    boxCount = x;
+    rngLimit = y;
+}
+
 function rng(){
-    let rand = Math.floor(Math.random() * 100);
+    let rand = Math.floor(Math.random() * rngLimit + 1);
     while(numbers.includes(rand)){
-        console.log(rand);
-        rand = Math.floor(Math.random() * 100);
+        rand = Math.floor(Math.random() * rngLimit + 1);
     }
     
     return rand;
@@ -65,11 +72,12 @@ function lockIn(){
         box.style.display = "none";
         resetBtn.style.display = "grid";
         placeBtn.style.display = "none";
+        document.getElementById("boxContainer").style.visibility = "hidden";
         calc();
     }
 }
 
-function reset(){
+function reset(restart){
     resetGuessBox();
     box.style.display = "grid";
     
@@ -78,14 +86,17 @@ function reset(){
     
     numbers.length = 0;
     container.replaceChildren();
-    start(); BGMMusic();
+    currentNumber = rng();
+    if(restart){
+        start(); BGMMusic();
+    }
 }
 
 async function calc(){
     playScoreResultSound();
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < boxCount; i++){
         let valid = 0;
-        for(let j = 0; j < 10; j++){
+        for(let j = 0; j < boxCount; j++){
             if(!(numbers[i] <= numbers[j])){
                 valid++;
             }
