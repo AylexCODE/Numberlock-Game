@@ -8,3 +8,10 @@ function play(){
     start();
     BGMMusic();
 }
+
+function stop(){
+    titleScreen.classList.add("active");
+    gameScreen.classList.remove("active");
+    
+    reset(false);
+}
