@@ -15,16 +15,28 @@
             </div>
             <div id="menu">
                 <button onclick="play()">Play</button>
-                <button>Set Difficulty</button>
-                <button>Quit</button>
+                <button popovertarget="difficultyMenu">Set Difficulty</button>
+                <button onclick="window.close();">Quit</button>
+            </div>
+            <div id="difficultyMenu" popover>
+                <span>
+                    <button popovertarget="difficultyMenu" popovertargetaction="hidden">×</button>
+                    <span>
+                        <button onclick="setDifficulty(5, 50)" popovertarget="difficultyMenu" popovertargetaction="hidden">Easy</button>
+                        <button onclick="setDifficulty(10, 100)" popovertarget="difficultyMenu" popovertargetaction="hidden">Normal</button>
+                        <button onclick="setDifficulty(20, 500)" popovertarget="difficultyMenu" popovertargetaction="hidden">Hard</button>
+                        <button onclick="setDifficulty(30, 999)" popovertarget="difficultyMenu" popovertargetaction="hidden">Insane</button>
+                    </span>
+                </span>
             </div>
         </section>
         <section class="gameContainer">
+            <button onclick="stop()" id="menuBtn">×</button>
             <section id="boxesContainer"></section>
             <div id="box" style="visibility: hidden"></div><span id="boxContainer" style="visibility: hidden"></span>
             <span>
                 <button class="placeBtn" onclick="lockIn()">LOCK-IN</button>
-                <button class="resetBtn" onclick="reset()">RESET</button>
+                <button class="resetBtn" onclick="reset(true)">RESET</button>
             </span>
         </section>
     </body>
