@@ -104,6 +104,55 @@ body > section {
     font-weight: bold;
 }
 
+#difficultyMenu {
+    position: absolute;
+    top: calc(50% - 75px);
+    left: calc(50% - 75px - 1.3rem);
+}
+
+#difficultyMenu > span {
+    display: flex;
+    flex-direction: column;
+    height: 190px;
+    width: 150px;
+    padding: 1rem;
+    border: solid black;
+    border-width: 2px 5px 5px 2px;
+}
+
+#difficultyMenu > span > span {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#difficultyMenu > span > span > button {
+    padding: 0.5rem 1rem;
+    border: solid black;
+    border-width: 1px 2px 2px 1px;
+    border-radius: 0.5rem;
+}
+
+#difficultyMenu > span > button {
+    position: absolute;
+    right: 10px;
+    top: 2.5px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+#menuBtn {
+    position: absolute;
+    right: 10px;
+    top: 2.5px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
 .guessBox {
     display: grid;
     place-items: center;
