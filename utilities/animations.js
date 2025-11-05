@@ -1,18 +1,21 @@
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(Draggable);
     
-    gsap.set("#boxContainer", {
-        x: window.innerWidth / 2 - 25,
-        y: window.innerHeight / 2 - 25 - 200
-    });
 
-    resetGuessBox = function resetGuessBoxPosition(){
+    resetGuessBox = function resetGuessBoxPosition(wContainer){
         gsap.set(box, {
             x: window.innerWidth / 2 - 25,
-            y: window.innerHeight / 2 - 25 - 200
+            y: container.getBoundingClientRect().y - 50
         });
+        
+        if(wContainer){
+            gsap.set("#boxContainer", {
+                x: window.innerWidth / 2 - 25,
+                y: container.getBoundingClientRect().y - 50
+            });
+        }
     }
-    resetGuessBox();
+    
     document.getElementById("box").style.visibility = "visible";
     document.getElementById("boxContainer").style.visibility = "visible";
     
