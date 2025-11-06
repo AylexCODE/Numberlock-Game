@@ -31,11 +31,16 @@ function start(){
         dataBoxes[i] = { x: box.getBoundingClientRect().x, y: box.getBoundingClientRect().y};
     });
     box.innerHTML = `<h2>${currentNumber}</h2>`;
+    
+    resetGuessBox(true);
 }
 
 function setDifficulty(x, y){
     boxCount = x;
     rngLimit = y;
+    
+    boxes.length = 0;
+    dataBoxes.length = 0;
 }
 
 function rng(){
@@ -60,12 +65,13 @@ function lockIn(){
             numbers[boxIndex] = currentNumber;
             guessBoxes[boxIndex].innerHTML = `<h2>${currentNumber}</h2>`;
             guessBoxes[boxIndex].style.backgroundColor = "#CCCCCC";
+            currentNumber = rng();
+            resetGuessBox(false);
+            box.innerHTML = `<h2>${currentNumber}</h2>`;
+            return null;
         }else{
             return n;
         }
-        currentNumber = rng();
-        resetGuessBox();
-        box.innerHTML = `<h2>${currentNumber}</h2>`;
     });
     
     if(boxes.length == 0){
@@ -78,7 +84,7 @@ function lockIn(){
 }
 
 function reset(restart){
-    resetGuessBox();
+    resetGuessBox(true);
     box.style.display = "grid";
     
     resetBtn.style.display = "none";
