@@ -113,7 +113,7 @@ body > section {
 #difficultyMenu > span {
     display: flex;
     flex-direction: column;
-    height: 190px;
+    height: 250px;
     width: 150px;
     padding: 1rem;
     border: solid black;
